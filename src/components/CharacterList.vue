@@ -1,8 +1,11 @@
 <template>
     <section>
-        <div class="row gy-4" v-if="store.characterList.length > 0">
-            <div class="col-12 col-md-4 col-lg-3" v-for="(item, index) in store.characterList" :key="item.id">
-                <CardComponent :image="item.card_sets[2][2]" :title="item.name" :archetype="item.archetype" />
+        <div class="bg-black py-3 px-2 ">
+            <span class="text-white">Found 39 card</span>
+        </div>
+        <div class="row gy-1" v-if="store.characterList.length > 0">
+            <div class="card-width col-12 col-md-4 col-lg-2 h-100 d-flex flex-wrap" v-for="(item, index) in store.characterList" :key="item.id">
+                <CardComponent :image="item.card_images[0].image_url" :name="item.name" :archetype="item.archetype" />
             </div>
         </div>
     </section>
@@ -26,4 +29,8 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.card-width {
+    width: calc(100% / 5);
+}
+</style>
