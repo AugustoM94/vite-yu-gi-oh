@@ -1,7 +1,7 @@
 <template>
     <section>
         <div class="bg-black py-3 px-2 ">
-            <span class="text-white">Found 39 card</span>
+           <span class="text-white">Found {{ archetypeList }} card</span>
         </div>
         <div class="row gy-1" v-if="store.characterList.length > 0">
             <div class="card-width col-12 col-md-4 col-lg-2 h-100 d-flex flex-wrap" v-for="(item, index) in store.characterList" :key="item.id">
@@ -17,8 +17,8 @@ import CardComponent from './CardComponent.vue';
 
 export default {
     name: 'CharacterList',
-    component: {
-        CardComponent
+    props: {
+        item: Object,
     },
     data() {
         return {

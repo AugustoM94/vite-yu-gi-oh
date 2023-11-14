@@ -1,7 +1,7 @@
 <template>
  <div class="card-container h-100">
      <div class="card h-100  text-center " style="width: 13rem;">
-                  <img :src="image" class="card-img-top" :alt="title">
+                  <img :src="image" class="card-img-top" :alt="name">
              <div class="card-body">
                     <h6 class="card-text text-white">{{ name }}</h6>
                     <small class="px-1 ">{{ archetype }}</small>

@@ -6,5 +6,7 @@ export const store = reactive({
     name: "name",
     archetype: "archetype",
   },
+  searchDone: false,
+  loading: false,
   characterList: [],
 });
