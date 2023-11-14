@@ -27,10 +27,5 @@ export default {
 .card {
     background-color:  #D48F38;
 }
-h6 {
-    font-size: 0.7rem;
-}
-small {
-    font-size: 0.8rem;
-}
+
 </style>

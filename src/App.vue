@@ -40,36 +40,35 @@ export default {
   },
   methods: {
     getCharacters() {
-      const url = store.apiUrl + store.endPoint.character;
-      const params = {
-        archetype: this.selectedArchetype,
-      };
+      const characterUrl = store.apiUrl + store.endPoint.character;
+      const archetypeUrl = 'https://db.ygoprodeck.com/api/v7/archetypes.php';
 
-      axios.get(url, { params }).then((response) => {
-        store.characterList = response.data.data;
-        this.filteredCharacters = [...response.data.data];
-      });
+      Promise.all([
+        axios.get(characterUrl, { params: { archetype: this.selectedArchetype } }),
+        axios.get(archetypeUrl)
+      ])
+        .then((responses) => {
+          const charactersResponse = responses[0];
+          const archetypesResponse = responses[1];
 
-      axios.get('https://db.ygoprodeck.com/api/v7/archetypes.php').then((response) => {
-        this.archetypeList = response.data;
-      });
+          store.characterList = charactersResponse.data.data;
+          this.filteredCharacters = [...charactersResponse.data.data];
+          this.archetypeList = archetypesResponse.data;
+        })
+        .catch((error) => {
+          console.error('Error fetching data:', error);
+        });
     },
     archetypeUpdate(archetype) {
       this.selectedArchetype = archetype;
       this.getCharacters();
     },
-    searchByName(name) {
-      this.filteredCharacters = this.store.characterList.filter((character) =>
-        character.name.toLowerCase().includes(name.toLowerCase())
-      );
-    },
   },
   created() {
     this.getCharacters();
   },
-};
+}
 </script>
-
 <style lang="scss" scoped>
 .bg-main {
   background-color: #D48F38;

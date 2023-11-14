@@ -37,5 +37,10 @@ export default {
   margin: 0 auto;
   padding: 1rem;
 }
-
+select{
+  width: 250px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: rgba($color: #ffffff, $alpha: 0.4);
+}
 </style>
